@@ -52,6 +52,17 @@ class PeopleMeta(sc.prettyobj):
             'rel_sus',          # Float
             'n_infections',     # Int
             'n_breakthroughs',  # Int
+            ### Added for opioids
+            'alpha_prob',       # Float
+            'beta_prob',        # Float
+            'theta1_prob',      # Float
+            'epsilon_prob',     # Float
+            'theta2_prob',      # Float
+            'gamma_prob',       # Float
+            'xi_prob',          # Float
+            'theta3_prob',      # Float
+            'nu_prob',          # Float
+            'sigma_prob',       # Float
         ]
 
         # Set the states that a person can be in: these are all booleans per person -- used in people.py
@@ -71,6 +82,12 @@ class PeopleMeta(sc.prettyobj):
             'known_contact',
             'quarantined',
             'vaccinated',
+            ### Added for opioids
+            'susceptible_opioids',
+            'prescription',
+            'addicted',
+            'heroin',
+            'recovered_opioids',
         ]
 
         # Variant states -- these are ints
@@ -153,6 +170,12 @@ result_stocks = {
     'known_dead':  'Number of confirmed deaths',
     'quarantined': 'Number in quarantine',
     'vaccinated':  'Number of people vaccinated',
+    ### Added for opioids
+    'susceptible_opioids':  'Number susceptible to opioids',
+    'prescription':         'Number on prescription',
+    'addicted':             'Number addicted to prescription',
+    'heroin':               'Number on street heroin',
+    'recovered_opioids':    'Number recovered opioid users',
 }
 
 result_stocks_by_variant = {
@@ -176,6 +199,18 @@ result_flows = {
     'quarantined':  'quarantined people',
     'doses':        'vaccine doses',
     'vaccinated':   'vaccinated people'
+    ### Added for opioids
+    'prescriptions':            'prescriptions',
+    'immediate_addictions':     'immediate addictions',
+    'immediate_heroin':         'immediate heroin',
+    'prescription_recoveries':  'prescription recoveries',
+    'addictions':               'addictions',
+    'prescription_to_heroin':   'precription to heroin',
+    'addict_recoveries':        'addict recoveries',
+    'heroins':                  'heroins',
+    'recovered_opioids':        'recovered opioids',
+    'relapsed_to_heroin':       'relapsed to heroin',
+    'relapsed_to_addiction':    'relapsed to addiction',
 }
 
 result_flows_by_variant = {
@@ -275,6 +310,23 @@ def get_default_colors():
     c.pop_nabs              = '#32733d'
     c.pop_protection        = '#9e1149'
     c.pop_symp_protection   = '#b86113'
+    ### Added for opioids currently set at black because I am lazyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
+    c.susceptible_opioids   = '#000000'
+    c.prescription          = '#000000'
+    c.addicted              = '#000000'
+    c.heroin                = '#000000'
+    c.recovered_opioids     = '#000000'
+    c.prescriptions         = '#000000'
+    c.immediate_addictions  = '#000000'
+    c.immediate_heroin      = '#000000'
+    c.prescription_recoveries   = '#000000'
+    c.addictions            = '#000000'
+    c.prescription_to_heroin    = '#000000'
+    c.addict_recoveries     = '#000000'
+    c.heroins               = '#000000'
+    c.recovered_opioids     = '#000000'
+    c.relapsed_to_heroin    = '#000000'
+    c.relapsed_to_addiction = '#000000'
     return c
 
 
@@ -305,6 +357,14 @@ overview_plots = [
     'cum_doses',
     'test_yield',
     'r_eff',
+    ### Added for opioids
+    'cum_addicted',
+    'cum_heroin',
+    'cum_recovered_opioids',
+    'new_addictions',
+    'new_heroins',
+    'new_recovered_opioids',
+    'new_relapsed_to_heroin',
 ]
 
 overview_variant_plots = [
