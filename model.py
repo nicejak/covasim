@@ -1,15 +1,10 @@
-'''
-More complex custom intervention example
-'''
-
-import numpy as np
-import pylab as pl
 import covasim as cv
+import numpy as np
 
 class protect_elderly(cv.Intervention):
 
     def __init__(self, start_day=None, end_day=None, age_cutoff=70, rel_sus=0.0, *args, **kwargs):
-        super().__init__(**kwargs) # This line must be included
+        super().__init__(**kwargs) # NB: This line must be included
         self.start_day   = start_day
         self.end_day     = end_day
         self.age_cutoff  = age_cutoff
@@ -46,27 +41,3 @@ class protect_elderly(cv.Intervention):
         pl.ylabel('Number infected')
         pl.title('Number of elderly people with active COVID')
         return
-
-
-if __name__ == '__main__':
-
-    # Define and run the baseline simulation
-    pars = dict(
-        pop_size = 50e3,
-        pop_infected = 100,
-        n_days = 90,
-        verbose = 0,
-    )
-    orig_sim = cv.Sim(pars, label='Default')
-
-    # Define the intervention and the scenario sim
-    protect = protect_elderly(start_day='2020-04-01', end_day='2020-05-01', rel_sus=0.1) # Create intervention
-    sim = cv.Sim(pars, interventions=protect, label='Protect the elderly')
-
-    # Run and plot
-    msim = cv.parallel([orig_sim, sim])
-    msim.plot()
-
-    # Plot intervention
-    protect = msim.sims[1].get_intervention(protect_elderly) # Find intervention by type
-    protect.plot()
