@@ -1,14 +1,20 @@
 import covasim as cv
 import numpy as np
 
-class protect_elderly(cv.Intervention):
+class opioid(cv.Intervention):
 
-    def __init__(self, start_day=None, end_day=None, age_cutoff=70, rel_sus=0.0, *args, **kwargs):
+    def __init__(self, parameters, *args, **kwargs):
         super().__init__(**kwargs) # NB: This line must be included
-        self.start_day   = start_day
-        self.end_day     = end_day
-        self.age_cutoff  = age_cutoff
-        self.rel_sus     = rel_sus
+        self.prob_alpha     = parameters['alpha']
+        self.prob_beta      = parameters['beta']
+        self.prob_gamma     = parameters['gamma']
+        self.prob_epsilon   = parameters['epsilon']
+        self.prob_theta1    = parameters['theta1']
+        self.prob_theta2    = parameters['theta2']
+        self.prob_theta3    = parameters['theta3']
+        self.prob_xi        = parameters['xi']
+        self.prob_nu        = parameters['nu']
+        self.prob_sigma     = parameters['sigma']
         return
 
     def initialize(self, sim):
