@@ -19,12 +19,12 @@ class opioid(cv.Intervention):
 
     def initialize(self, sim):
         super().initialize() # NB: This line must also be included
-        self.start_day   = sim.day(self.start_day) # Convert string or dateobject dates into an integer number of days
-        self.end_day     = sim.day(self.end_day)
-        self.days        = [self.start_day, self.end_day]
-        self.elderly     = sim.people.age > self.age_cutoff # Find the elderly people here
-        self.exposed     = np.zeros(sim.npts) # Initialize results
-        self.tvec        = sim.tvec # Copy the time vector into this intervention
+        self.susceptible_opioid     = np.zeros(sim.npts)
+        self.prescription_opioid    = np.zeros(sim.npts)
+        self.addicted_opioid        = np.zeros(sim.npts)
+        self.heroin_opioid          = np.zeros(sim.npts)
+        self.recovered_opioid       = np.zeros(sim.npts)
+        self.tvec                   = sim.tvec # Copy the time vector into this intervention
         return
 
     def apply(self, sim):
